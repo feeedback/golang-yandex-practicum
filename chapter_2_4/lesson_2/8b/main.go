@@ -6,17 +6,23 @@ import (
 	"slices"
 )
 
+func reverse[T any](slice []T) []T {
+	// // before Go 1.21.0
+	// n := len(slice)
+	// for i := 0; i < n/2; i++ {
+	// 	slice[i], slice[n-1-i] = slice[n-1-i], slice[i]
+	// }
+	slices.Reverse(slice)
+
+	return slice
+}
+
 func main() {
 	input := "Привет, мир!"
 
 	runes := []rune(input)
 
-	// // before Go 1.21.0
-	// n := len(runes)
-	// for i := 0; i < n/2; i++ {
-	// 	runes[i], runes[n-1-i] = runes[n-1-i], runes[i]
-	// }
-	slices.Reverse(runes)
+	runes = reverse(runes)
 
 	fmt.Println(string(runes))
 }
