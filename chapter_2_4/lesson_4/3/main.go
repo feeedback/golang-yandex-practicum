@@ -4,23 +4,57 @@ package main // Тема 1/4: Композитные типы → Урок 4/5
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
-type Person struct {
-	Name        string    `json:"Имя"`
-	Email       string    `json:"Почта"`
-	DateOfBirth time.Time `json:"-"`
+type Response struct {
+	Header struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	} `json:"header"`
+
+	Data []struct {
+		Type string `json:"type"`
+		ID   int    `json:"id"`
+
+		Attributes struct {
+			Email      string `json:"email"`
+			ArticleIDs []int  `json:"article_ids"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
+
+func ReadResponse(rawResp string) (Response, error) {
+	var resp Response
+
+	err := json.Unmarshal([]byte(rawResp), &resp)
+	if err != nil {
+		return Response{}, err
+	}
+
+	return resp, nil
 }
 
 func main() {
-	person := Person{
-		Name:        "Aлекс",
-		Email:       "alex@yandex.ru",
-		DateOfBirth: time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC),
+	rawJSON := `{
+        "header": {
+            "code": 0,
+            "message": ""
+        },
+        "data": [{
+            "type": "user",
+            "id": 100,
+            "attributes": {
+                "email": "bob@yandex.ru",
+                "article_ids": [10, 11, 12]
+            }
+        }]
+    }`
+
+	parsedResponse, err := ReadResponse(rawJSON)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
 	}
 
-	jsonData, _ := json.Marshal(person)
-
-	fmt.Println(string(jsonData))
+	fmt.Printf("%+v\n", parsedResponse)
 }
