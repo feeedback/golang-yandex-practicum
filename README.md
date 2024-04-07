@@ -1,10 +1,10 @@
-# golang-yandex-practicum
+## "Основы Go"
 
 [Курс "Основы Go" на Яндекс.Практикум](https://practicum.yandex.ru/go-basics/)
 
 [![wakatime](https://wakatime.com/badge/user/b9f860bf-3367-4c77-b755-9d73b4801f3a/project/e4e1fe1b-3c4c-44cf-a377-eb719216ae1d.svg)](https://wakatime.com/badge/user/b9f860bf-3367-4c77-b755-9d73b4801f3a/project/e4e1fe1b-3c4c-44cf-a377-eb719216ae1d)
 
-## Содержание
+#### Содержание
 
 ##### Основы языка Go (Введение)
 
