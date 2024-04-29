@@ -1,4 +1,4 @@
-## "Основы Go"
+## "Основы Go" (go-basics)
 
 [Курс "Основы Go" на Яндекс.Практикум](https://practicum.yandex.ru/go-basics/)
 
